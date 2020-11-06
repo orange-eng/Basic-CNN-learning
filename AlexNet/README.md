@@ -29,4 +29,4 @@
 * （3）找到一张花的图片，运行predict.py文件即可实现预测，输出花的种类
 ### 网络架构
 
-![photo](https://github.com/orange-eng/orange/raw/main/D:/Pastgraduate/my_code/orange/AlexNet/AlexNet_Structure.png)
+![photo](https://github.com/orange-eng/orange/raw/main/AlexNet/AlexNet_Structure.png)
