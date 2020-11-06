@@ -19,4 +19,4 @@
 * （3）找到一张图片，运行predict.py文件即可实现预测，输出照片的种类
 
 ### 网络架构
-！[photo](https://github.com/orange-eng/orange/raw/main/LeNet/LeNet_structure.png)
+![photo](https://github.com/orange-eng/orange/raw/main/LeNet/LeNet_structure.png)
