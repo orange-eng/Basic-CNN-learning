@@ -50,3 +50,10 @@ for step,data in enumerate(train_loader,start=0):
     outputs=net(images.to(device))                      #用GPU
     loss=loss_function(outputs,labels.to(device))       #计算损失函数
 ```
+## 3. 代码参数
+**问：args和kwargs在代码中是什么意思呢?**
+
+**答： args和kwargs一般是用在函数定义的时候。
+二者的意义是允许定义的函数接受任意数目的参数。
+也就是说我们在函数被调用前并不知道也不限制将来函数可以接收的参数数量。
+在这种情况下我们可以使用args和kwargs。**
