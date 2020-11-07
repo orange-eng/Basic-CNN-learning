@@ -1,7 +1,7 @@
 # orange
 ## 前言
 * 该markdown文档里面包含了自己写代码的时候遇到的许多的问题。
-
+****
 
 # 问题汇总
 ## 1、路径问题
@@ -20,7 +20,7 @@ path = os.path.abspath(os.path.dirname(sys.argv[0]))
 root=path+'\\trainset'
 ```
 **root就是该路径下，trainset文件中的内容路径**
-
+****
 
 ## 2、GPU问题
 **问：我好像没有在用gpu进行训练啊，怎么看是不是用了GPU进行训练?**
@@ -50,10 +50,37 @@ for step,data in enumerate(train_loader,start=0):
     outputs=net(images.to(device))                      #用GPU
     loss=loss_function(outputs,labels.to(device))       #计算损失函数
 ```
+****
 ## 3. 代码参数
-**问：args和kwargs在代码中是什么意思呢?**
+**1)问：args和kwargs在代码中是什么意思呢?**
 
 **答： args和kwargs一般是用在函数定义的时候。
 二者的意义是允许定义的函数接受任意数目的参数。
 也就是说我们在函数被调用前并不知道也不限制将来函数可以接收的参数数量。
 在这种情况下我们可以使用args和kwargs。**
+
+**2)问：网络结构中，发现output的尺寸与理论值不同怎么办？**
+
+**答： 首先要分析哪个参数不同（batch_size,channels,height,width）。最常见的是height和width出现异常，此时需要检查每一层对padding的设置，因为这会直接影响输出的大小。可以采用padding='SAME'的方式，使得输出层与输入层尺度保持不变**
+
+****
+## 4. 知识点（推荐的博客）
+**1)问：mAP是什么？**
+
+**答： 参考连接：https://github.com/XifengGuo/CapsNet-Keras/issues/7**
+
+
+**1)问：Batch Normalization详解**
+
+**答： 参考连接：https://blog.csdn.net/qq_37541097/article/details/104434557  在我们训练完后我们可以近似认为我们所统计的均值和方差就等于我们整个训练集的均值和方差。然后在我们验证以及预测过程中，就使用我们统计得到的均值和方差进行标准化处理。**
+
+****
+## 5. 常见报错
+**1)问：TypeError: not all arguments converted during string formatting**
+
+**答： 此时往往有单词拼写错误，认真检查参数和单词拼写**
+
+
+**2)问：RuntimeError: CUDA out of memory. Tried to allocate 98.00 MiB**
+
+**答： 这是用于batch_size设置太大，导致CUDA无法计算。将batch_size调小一点即可**
