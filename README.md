@@ -10,7 +10,7 @@
     * VggNet（已完成）
     * GoogLeNet（准备中）
     * ResNet（已完成）
-    * MobileNet（准备中）
+    * MobileNet（已完成）
     * ShuffleNet (准备中)
 * 目标识别检测
     * Faster RCNN/FPN（进行中）
@@ -31,6 +31,10 @@
 - 数据集需要手动下载
 
 #### ResNet
+- 使用5种花的数据集实现图像分类
+- 数据集需要手动下载
+
+#### MobileNetV2
 - 使用5种花的数据集实现图像分类
 - 数据集需要手动下载
 
