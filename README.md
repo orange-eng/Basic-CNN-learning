@@ -7,16 +7,15 @@
 * 图像分类
     * LeNet（已完成）
     * AlexNet（已完成）
-    * VggNet（准备中）
+    * VggNet（已完成）
     * GoogLeNet（准备中）
-    * ResNet（准备中）
+    * ResNet（已完成）
     * MobileNet（准备中）
     * ShuffleNet (准备中)
 * 目标识别检测
     * Faster RCNN/FPN（进行中）
     * SSD/RetinaNet (进行中)
     * YOLO v3（进行中）
-* 目标分割
 
 
 ### 目录
@@ -28,6 +27,10 @@
 - 使用CIFAR数据集，实现图像分类
 
 #### AlexNet
+- 使用5种花的数据集实现图像分类
+- 数据集需要手动下载
+
+#### ResNet
 - 使用5种花的数据集实现图像分类
 - 数据集需要手动下载
 
