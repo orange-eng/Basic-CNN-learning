@@ -4,6 +4,158 @@
 ****
 
 # 笔记汇总
+
+## 编程技巧
+
+### H5文件
+**h5文件中有两个核心的概念：组“group”和数据集“dataset”。 一个h5文件就是 “dataset” 和 “group” 二合一的容器。**
+
+- dataset ：简单来讲类似数组组织形式的数据集合，像 numpy 数组一样工作，一个dataset即一个numpy.ndarray。具体的dataset可以是图像、表格，甚至是pdf文件和excel。
+- group：包含了其它 dataset(数组) 和 其它 group ，像字典一样工作。
+
+   一个h5文件被像linux文件系统一样被组织起来：dataset是文件，group是文件夹，它下面可以包含多个文件夹(group)和多个文件(dataset)。
+
+**使用python对h5文件进行操作**
+
+- 写H5文件
+
+```python
+# Writing h5
+
+import h5py
+import numpy as np
+# mode可以是"w",为防止打开一个已存在的h5文件而清除其数据,故使用"a"模式
+with h5py.File("animals.h5", 'a') as f:
+    f.create_dataset('animals_included',data=np.array(["dogs".encode(),"cats".encode()])) # 根目录下创建一个总览介绍动物种类的dataset,字符串应当字节化
+    dogs_group = f.create_group("dogs") # 在根目录下创建gruop文件夹:dogs
+    f.create_dataset('cats',data = np.array(np.random.randn(5,64,64,3))) # 根目录下有一个含5张猫图片的dataset文件
+    dogs_group.create_dataset("husky",data=np.random.randn(64,64,3)) # 在dogs文件夹下分别创建两个dataset,一张哈士奇图片和一张柴犬的图片
+    dogs_group.create_dataset("shiba",data=np.random.randn(64,64,3))
+```
+- 读取H5文件
+
+```python
+with h5py.File('animals.h5','r') as f:
+    for fkey in f.keys():
+        print(f[fkey], fkey)
+
+    print("======= 优雅的分割线 =========")
+    '''
+    结果：
+    <HDF5 dataset "animals_included": shape (2,), type "|S4"> animals_included
+	<HDF5 dataset "cats": shape (5, 64, 64, 3), type "<f8"> cats
+	<HDF5 group "/dogs" (2 members)> dogs
+	'''
+
+    dogs_group = f["dogs"] # 从上面的结果可以发现根目录/下有个dogs的group,所以我们来研究一下它
+    for dkey in dogs_group.keys():
+        print(dkey, dogs_group[dkey], dogs_group[dkey].name, dogs_group[dkey].value)
+```
+这里还有一个技巧，就是如果需要直接读取H5文件中的数据，只能得到dataset里面的数据，可以采用如下命令来实现：
+```python
+#此时h5文件中包含两个dataset: data和llabel
+with h5py.File(name=path,mode='r') as hf:
+    data = np.array(hf.get('data'))
+    label = np.array(hf.get('label'))
+    return data,label
+```
+
+### print函数
+```python
+print('%s and %s.'%(line,line[0]))
+print("{0} and {1}.".format(line,line[0]))
+```
+### tf.session函数
+```python
+A class for running TensorFlow operations.
+
+tf.compat.v1.disable_eager_execution() # need to disable eager in TF2.x
+# Build a graph.
+a = tf.constant(5.0)
+b = tf.constant(6.0)
+c = a * b
+# Launch the graph in a session.
+sess = tf.compat.v1.Session()
+# Evaluate the tensor `c`.
+print(sess.run(c)) # prints 30.0
+```
+
+### Python 数据结构
+#### 列表
+* 在python中，矩阵是按照行来存储的，如果要读取列向量，则需要简单的索引。如下
+```python
+M = [
+  [1,2,3],
+  [4,5,6],
+  [7,8,9]
+]
+col2 = [ row[1] for row in M]
+#输出为
+[2, 5, 8]
+```
+
+### 初始化所有参数
+
+```python
+#----------------------------------------一种初始化所有参数的方法
+flags = tf.app.flags
+flags.DEFINE_integer("epoch",3,"Number of epoch[3]")
+flags.DEFINE_integer("batch_size",128,"the size of batch [128]")
+flags.DEFINE_integer("image_size",33,"the size of image [33]")
+flags.DEFINE_integer("label_size",21,"The size of label to produce [21]")
+flags.DEFINE_float("learning_rate", 1e-4, "The learning rate of gradient descent algorithm [1e-4]")
+flags.DEFINE_integer("c_dim", 1, "Dimension of image color. [1]")
+flags.DEFINE_integer("scale", 3, "The size of scale factor for preprocessing input image [3]")
+flags.DEFINE_integer("stride", 14, "The size of stride to apply input image [14]")
+flags.DEFINE_string("checkpoint_dir", "checkpoint", "Name of checkpoint directory [checkpoint]")
+flags.DEFINE_string("sample_dir", "sample", "Name of sample directory [sample]")
+flags.DEFINE_boolean("is_train", False, "True for training, False for testing [True]")
+FLAGS = flags.FLAGS
+```
+
+
+调用的方法也十分简单
+```python
+print(FLAGS.learning_rate)
+```
+
+### os库的使用
+#### os.path.join()： 将多个路径组合后返回
+```python
+Path1 = 'a'
+Path2 = 'b'
+Path3 = 'c'
+
+Path_n = Path1 + Path2 + Path3
+Path_n1 = os.path.join(Path1,Path2,Path3)
+print ('Path_n = ',Path_n)
+print ('Path_n1 = ',Path_n1)
+
+#输出为
+Path_n = abc
+Path_n1 = a\b\c
+```
+#### os.listdir()用于返回一个由文件名和目录名组成的列表，需要注意的是它接收的参数需要是一个绝对的路径
+```python
+import os
+path = '/home/python/Desktop/'
+for i in os.listdir(path):
+    print(i)
+
+#输出为该绝对路径下面的所有文件名
+
+```
+
+#### os.sep:  python是跨平台的。在Windows上，文件的路径分隔符是’’，在Linux上是’/’。为了让代码在不同的平台上都能运行，那么路径应该写’‘还是’/'呢？使用os.sep的话，就不用考虑这个了，os.sep根据你所处的平台，自动采用相应的分隔符号。
+
+#### glob.glob()将目录下的文件全部读取了出来
+
+## 神经网络的反向传播算法
+推导过程请看链接
+https://blog.csdn.net/qq_29407397/article/details/90599460
+卷积神经网络反向传播
+https://blog.csdn.net/weixin_40446651/article/details/81516944
+
 ## 激活函数
 “激活函数”能分成两类——“饱和激活函数”和“非饱和激活函数”
 
@@ -280,3 +432,19 @@ with tf.Session() as sess:
     tensor_a=tf.convert_to_tensor(a)
 
 ```
+
+**6)问：python报错解决方法：module 'scipy.misc' has no attribute 'imread'**
+
+**答： 在该python环境中，安装Pillow即可；或是scipy1.3.0的版本降级到scipy==1.2.1才行**
+
+**7)问：数字后面加.表示什么意思呢？**
+
+**答： 数字后面加.表示该数值为浮点型float**
+
+**8)问：色彩空间YCbCr指的是什么呢？**
+
+**答： YCbCr或Y'CbCr有的时候会被写作：YCBCR或是Y'CBCR，是色彩空间的一种，通常会用于影片中的影像连续处理，或是数字摄影系统中。Y'为颜色的亮度(luma)成分、而CB和CR则为蓝色和红色的浓度偏移量成份。Y'和Y是不同的，而Y就是所谓的亮度(luminance)，表示光的浓度且为非线性，使用伽马修正(gamma correction)编码处理；**
+
+**YCbCr其中Y是指亮度分量，Cb指蓝色色度分量，而Cr指红色色度分量。人的肉眼对视频的Y分量更敏感，因此在通过对色度分量进行子采样来减少色度分量后，肉眼将察觉不到的图像质量的变化。主要的子采样格式有 YCbCr 4:2:0、YCbCr 4:2:2 和 YCbCr 4:4:4。**
+
+**4:2:0表示每4个像素有4个亮度分量，2个色度分量 (YYYYCbCr），仅采样奇数扫描线，是便携式视频设备（MPEG-4）以及电视会议（H.263）最常用格式；4：2：2表示每4个像素有4个亮度分量，4个色度分量（YYYYCbCrCbCr），是DVD、数字电视、HDTV 以及其它消费类视频设备的最常用格式；4：4：4表示全像素点阵(YYYYCbCrCbCrCbCrCbCr），用于高质量视频应用、演播室以及专业视频产品。**
