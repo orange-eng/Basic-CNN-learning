@@ -186,7 +186,7 @@ sigmoid和tanh是“饱和激活函数”，而ReLU及其变体则是“非饱�
 #### Leaky ReLUs
     ReLU是将所有的负值都设为零，相反，Leaky ReLU是给所有负值赋予一个非零斜率。Leaky ReLU激活函数是在声学模型（2013）中首次提出的。以数学的方式我们可以表示为：
 
-## 将batch_size的作用
+### 将batch_size的作用
 
 **首先，为什么需要有 Batch_Size 这个参数**
 
@@ -222,7 +222,7 @@ Batch_Size 增大到一定程度，其确定的下降方向已经基本不再变
 - 由于上述两种因素的矛盾， Batch_Size 增大到某个时候，达到时间上的最优。
 - 由于最终收敛精度会陷入不同的局部极值，因此 Batch_Size 增大到某些时候，达到最终收敛精度上的最优。
 
-## Batch Normalization
+### Batch Normalization
 
 **一、简介**
 
@@ -263,6 +263,18 @@ BN在深层神经网络的作用非常明显：若神经网络训练时遇到收
     优点：
     1.能解决深度神经网络（层数非常多）的“梯度消失”问题，浅层神经网络（三五层那种）才用sigmoid 作为激活函数。
     2.它能加快收敛速度。
+
+****
+### 知识点（推荐的博客）
+**1)问：mAP是什么？**
+
+**答： 参考连接：https://github.com/XifengGuo/CapsNet-Keras/issues/7**
+
+
+**2)问：Batch Normalization详解**
+
+**答： 参考连接：https://blog.csdn.net/qq_37541097/article/details/104434557  在我们训练完后我们可以近似认为我们所统计的均值和方差就等于我们整个训练集的均值和方差。然后在我们验证以及预测过程中，就使用我们统计得到的均值和方差进行标准化处理。**
+
 
 ## 数据集
 人脸数据集
@@ -329,16 +341,6 @@ for step,data in enumerate(train_loader,start=0):
 
 **答： 首先要分析哪个参数不同（batch_size,channels,height,width）。最常见的是height和width出现异常，此时需要检查每一层对padding的设置，因为这会直接影响输出的大小。可以采用padding='SAME'的方式，使得输出层与输入层尺度保持不变**
 
-****
-## 4. 知识点（推荐的博客）
-**1)问：mAP是什么？**
-
-**答： 参考连接：https://github.com/XifengGuo/CapsNet-Keras/issues/7**
-
-
-**1)问：Batch Normalization详解**
-
-**答： 参考连接：https://blog.csdn.net/qq_37541097/article/details/104434557  在我们训练完后我们可以近似认为我们所统计的均值和方差就等于我们整个训练集的均值和方差。然后在我们验证以及预测过程中，就使用我们统计得到的均值和方差进行标准化处理。**
 
 ****
 ## 5. 常见报错
