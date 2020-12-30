@@ -1,6 +1,6 @@
 # tensorflow/pytorch_build_CNN
 ## 前言
-* Tensorflow 是深度学习中最常用的框架之一，以后会经常使用到，所以在这里对tensorflow的构建CNN过程进行总结，以后搭模型会更方便
+* Tensorflow和Pytorch 是深度学习中最常用的框架之一，以后会经常使用到，所以在这里对tensorflow的构建CNN过程进行总结，以后搭模型会更方便
 ****
 
 ## 目录
