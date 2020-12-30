@@ -32,24 +32,25 @@ class AlexNet(nn.Module):
         )
         if init_Weight:
             self._initialize_weights()
-
+    #前向传播过程，添加分类器
     def forward(self,x):
         x=self.features(x)
         x=torch.flatten(x,start_dim=1)
         x=self.classifier(x)
         return x
     def _initialize_weights(self):
-        for m in self.modules():
-            if isinstance(m, nn.Conv2d):
+        for m in self.modules():        #继承了nn.module，会返回一个迭代器，遍历每一个模块
+            if isinstance(m, nn.Conv2d):        #判断m是否是给定类型nn.Conv2d
+                #如果是Conv2d，就是用kaiming_normal_对权重进行初始化
                 nn.init.kaiming_normal_(m.weight, mode='fan_out', nonlinearity='relu')
                 if m.bias is not None:
+                    #如果偏置不为空，就用0进行初始化
                     nn.init.constant_(m.bias, 0)
             elif isinstance(m, nn.Linear):
+                #如果是全连接层，使用normal进行初始化
                 nn.init.normal_(m.weight, 0, 0.01)
                 nn.init.constant_(m.bias, 0)
-'''
-input1=torch.rand([32,3,224,224])
+
 model=AlexNet()   
 print(model)
-'''
 

@@ -16,7 +16,7 @@ device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 print(device)
 
 data_transform = {
-    "train": transforms.Compose([transforms.RandomResizedCrop(224),     #裁剪到224
+    "train": transforms.Compose([transforms.RandomResizedCrop(224),     #随机裁剪到224
                                  transforms.RandomHorizontalFlip(),     #随机水平竖直翻转
                                  transforms.ToTensor(),
                                  transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))]),
@@ -36,7 +36,7 @@ flower_list = train_dataset.class_to_idx
 cla_dict = dict((val, key) for key, val in flower_list.items())
 # write dict into json file
 json_str = json.dumps(cla_dict, indent=4)       
-with open('class_indices.json', 'w') as json_file:
+with open(path+'\\class_indices.json', 'w') as json_file:
     json_file.write(json_str)
 
 #--------------------载入数据----------------------------------
@@ -65,6 +65,7 @@ def imshow(img):
 print(' '.join('%5s' % cla_dict[test_label[j].item()] for j in range(4)))
 imshow(utils.make_grid(test_image))
 '''
+#------------------------网络构建------------------------------
 net=AlexNet(num_class=5,init_Weight=True)       #初始化权重设置为Ture
 net.to(device)
 
@@ -74,7 +75,7 @@ optimizer = optim.Adam(net.parameters(),lr=0.0002)
 
 save_path = path + '\\result\AlexNet.pth'
 best_acc=0
-for epoch in range(3):
+for epoch in range(1):
     #--------------------------train-------------------
     net.train()
     running_loss=0

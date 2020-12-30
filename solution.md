@@ -7,9 +7,26 @@
 
 ## 目录
 1. [编程技巧](#编程技巧)
+- H5文件
+- print函数
+- tf.session函数
+- Python数据结构（tf.app.flags初始化参数的使用）
+- os库的使用
 2. [数学基础](#数学基础)
+- 反向传播算法
+- 激活函数
+- batch_size 的使用
+- Batch Normalization
+- mAP
+- 傅里叶变换
 3. [数据集](#数据集)
+- 人脸数据集
+- 超分辨率数据集
 4. [问题汇总](#问题汇总)
+- 设置相对路径
+- GPU设置-torch
+- 代码参数
+- 常见报错
 
 
 ## 编程技巧
@@ -299,6 +316,10 @@ X是N*1向量，T是N*N矩阵，定义了向量X的线性变换
 ## 数据集
 人脸数据集
 https://www.cnblogs.com/haiyang21/p/11208293.html
+
+超分辨率数据集
+链接：https://pan.baidu.com/s/1A1S-2fy-gt79uE18clPFbw
+提取码：1b7w
 
 
 ## 问题汇总
