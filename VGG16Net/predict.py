@@ -23,7 +23,7 @@ img = data_transform(img)
 img = torch.unsqueeze(img, dim=0)
 # read class_indict
 try:
-    json_file = open('./class_indices.json', 'r')
+    json_file = open(path+'./class_indices.json', 'r')
     class_indict = json.load(json_file)
 except Exception as e:
     print(e)
