@@ -13,6 +13,7 @@
 - Python数据结构（tf.app.flags初始化参数的使用）
 - os库的使用
 2. [数学基础](#数学基础)
+- 图像的DCT(离散余弦变换)
 - 反向传播算法
 - 激活函数
 - batch_size 的使用
@@ -168,6 +169,7 @@ for i in os.listdir(path):
 
 #输出为该绝对路径下面的所有文件名
 
+
 ```
 
 #### os.sep:  python是跨平台的。在Windows上，文件的路径分隔符是’’，在Linux上是’/’。为了让代码在不同的平台上都能运行，那么路径应该写’‘还是’/'呢？使用os.sep的话，就不用考虑这个了，os.sep根据你所处的平台，自动采用相应的分隔符号。
@@ -175,6 +177,10 @@ for i in os.listdir(path):
 #### glob.glob()将目录下的文件全部读取了出来
 
 ## 数学基础
+
+### 图像的DCT(离散余弦变换)
+http://www.whydomath.org/node/wavlets/basicjpg.html
+https://blog.csdn.net/nemoyy/article/details/80896449
 
 ### 神经网络的反向传播算法
 推导过程请看链接

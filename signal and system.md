@@ -122,4 +122,7 @@ https://www.bilibili.com/video/BV1Tb41187i1
 
 
 
+## 图像的DCT(离散余弦变换)
+http://www.whydomath.org/node/wavlets/basicjpg.html
+https://blog.csdn.net/nemoyy/article/details/80896449
 -
