@@ -44,3 +44,56 @@
 * VScode 1.50.1 (IDE)
 * pytorch 1.3 (pip package)
 * torchvision 0.4.0 (pip package)
+
+## 图片，视频等素材的下载网址
+
+一 照片
+- 1 pixabay：https://pixabay.com/zh/
+- 2 Unsplash：https://unsplash.com/
+- 3 Pexels：https://www.pexels.com/zh-cn/
+- 4 Foodiesfeed ：https://www.foodiesfeed.com
+- 5 CC零图片网：https://cc0.cn/
+- 6 Logo神器：https://www.logosc.cn/so/
+
+二 图标
+- 1 iconfont：https://www.iconfont.cn/
+- 2 iconstore：https://iconstore.co/
+- 3 unDraw：https://undraw.co/illustrations
+- 4 ICONFINDER：https://www.iconfinder.com/
+- 5 ICONS8：https://icons8.com/
+
+三 矢量图/免抠PNG/PSD模板
+- 1 freepik：https://www.freepik.com/
+- 2 free-PSD-templates：https://free-psd-templates.com/
+- 3 365psd：https://365psd.com/
+- 4 pngimage：http://pngimg.com/
+- 5 CLEANPNG：https://www.cleanpng.com/
+
+四 壁纸
+- 1 wallhaven：https://wallhaven.cc/
+- 2 Wallpaper Abyss：https://wall.alphacoders.com/
+- 3 极简壁纸：https://bz.zzzmh.cn/
+
+五 视频
+- 1 Videezy ：https://www.videezy.com/
+- 2 Videvo：https://www.videvo.net/
+- 3 mixkit：https://mixkit.co/
+- 4 distill：https://wedistill.io/
+
+六 音频
+- 1 audionautix ：https://audionautix.com/
+- 2 Freepd：https://freepd.com/
+- 3 Freesound：https://freesound.org/
+- 4 耳聆网：https://www.ear0.com/
+- 5 淘声网：https://www.tosound.com/
+
+七 字体
+- 1 字由：https://www.hellofont.cn/
+- 2 100font：https://www.100font.com/
+
+八 PPT模板
+- 1 OfficePLUS：http://www.officeplus.cn/Template/Home.shtml
+- 2 PPT超级市场：http://ppt.sotary.com/web/wxapp/index.html
+- 3 51PPT模板：http://www.51pptmoban.com/ppt/
+- 4 PPT汇：https://www.ppthui.com/
+- 5 优品PPT：http://www.ypppt.com/

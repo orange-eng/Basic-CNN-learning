@@ -30,6 +30,7 @@
 - 常见报错
 
 
+
 ## 编程技巧
 
 ### H5文件
@@ -178,6 +179,9 @@ for i in os.listdir(path):
 
 ## 数学基础
 
+### 图像处理中的注意力集中机制
+https://blog.csdn.net/xys430381_1/article/details/89323444
+
 ### 图像的DCT(离散余弦变换)
 http://www.whydomath.org/node/wavlets/basicjpg.html
 https://blog.csdn.net/nemoyy/article/details/80896449
@@ -319,6 +323,13 @@ X是N*1向量，T是N*N矩阵，定义了向量X的线性变换
 
 一维离散傅里叶变换：一维信号的N个抽样
 时域周期=频域离散
+
+**4)finetune指的是什么？**
+
+答：就是用别人训练好的模型，加上我们自己的数据，来训练新的模型。finetune相当于使用别人的模型的前几层，来提取浅层特征，然后在最后再落入我们自己的分类中。
+  finetune的好处在于不用完全重新训练模型，从而提高效率，因为一般新训练模型准确率都会从很低的值开始慢慢上升，但是fine tune能够让我们在比较少的迭代次数之后得到一个比较好的效果。
+  在数据量不是很大的情况下，finetune会是一个比较好的选择。但是如果你希望定义自己的网络结构的话，就需要从头开始了
+
 ## 数据集
 人脸数据集
 https://www.cnblogs.com/haiyang21/p/11208293.html
@@ -514,3 +525,10 @@ with tf.Session() as sess:
 **YCbCr其中Y是指亮度分量，Cb指蓝色色度分量，而Cr指红色色度分量。人的肉眼对视频的Y分量更敏感，因此在通过对色度分量进行子采样来减少色度分量后，肉眼将察觉不到的图像质量的变化。主要的子采样格式有 YCbCr 4:2:0、YCbCr 4:2:2 和 YCbCr 4:4:4。**
 
 **4:2:0表示每4个像素有4个亮度分量，2个色度分量 (YYYYCbCr），仅采样奇数扫描线，是便携式视频设备（MPEG-4）以及电视会议（H.263）最常用格式；4：2：2表示每4个像素有4个亮度分量，4个色度分量（YYYYCbCrCbCr），是DVD、数字电视、HDTV 以及其它消费类视频设备的最常用格式；4：4：4表示全像素点阵(YYYYCbCrCbCrCbCrCbCr），用于高质量视频应用、演播室以及专业视频产品。**
+
+**9)AttributeError: module 'scipy' has no attribute 'misc'报错问题**
+
+改成如下import即可
+```python
+import scipy.misc
+```
