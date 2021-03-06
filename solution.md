@@ -3,6 +3,7 @@
 * 该markdown文档里面包含了自己写代码的时候遇到的许多的问题和笔记。
 ****
 
+
 # 笔记汇总
 
 ## 目录
@@ -371,6 +372,18 @@ root=path+'\\trainset'
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 print(device)
 ```
+**判断tensorflow上是否使用GPU**
+```python
+import tensorflow as tf
+import numpy as np
+a = tf.constant([1.0, 2.0, 3.0, 4.0, 5.0, 6.0], shape=[2, 3], name='a')
+b = tf.constant([1.0, 2.0, 3.0, 4.0, 5.0, 6.0], shape=[3, 2], name='b')
+c = tf.matmul(a, b)
+sess = tf.Session(config=tf.ConfigProto(log_device_placement=True))
+print(sess.run(c))
+
+```
+
 **之后在跑网络时，需要在net,input,labels,output,loss等参数后面加上.cuda()或是to(device)才可以。例如下面的代码即可调用GPU**
 ```python
 #example1
@@ -531,4 +544,23 @@ with tf.Session() as sess:
 改成如下import即可
 ```python
 import scipy.misc
+```
+
+**10)使用torch保存好模型参数之后，存储为pth文件，如何对其进行修改呢？**
+
+```python
+import torch
+pthfile = 'best.pth'
+net = torch.load(pthfile)
+net["layer1.0.coefficient"] = torch.FloatTensor([0])
+net["layer1.1.coefficient"] = torch.FloatTensor([0])
+
+for key, v in enumerate(net):
+    print(key, v)
+
+for key, v in net.items():
+    if key == 'conv1.weight':
+        print(key,v[0][0][0][0])
+
+torch.save(net, "Weights.pth")
 ```
